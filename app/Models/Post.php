@@ -16,4 +16,12 @@ class Post extends Model
             'name' => 'Guest User'
         ]);
     }
+
+    public function tags(){
+        //return $this->belongsToMany(Tag::class,'tag_post');
+        //return $this->belongsToMany(Tag::class,'post_tag','post_id','tag_id'); 
+         
+        //If follow the naming convention no need to specify parameters
+        return $this->belongsToMany(Tag::class);  
+    }
 }

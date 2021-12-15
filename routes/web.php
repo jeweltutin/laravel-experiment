@@ -117,9 +117,44 @@ Route::get('/posts', function(){
         'post' => "I know, thist question has been discussed already in this forum. But sorry, i just don't get it. Maybe the problem is, that EN is not my native language."
     ]);*/
 
-    $posts =  \App\Models\Post::get();
+    //$posts =  \App\Models\Post::get();
 
     //dd($posts[2]->user_id); 
+    //return view('posts.index',compact('posts'));
+
+    /* \App\Models\Tag::create([
+        'name' => 'Laravel'
+    ]);
+    \App\Models\Tag::create([
+        'name' => 'PHP'
+    ]);
+    \App\Models\Tag::create([
+        'name' => 'Javascript'
+    ]);
+    \App\Models\Tag::create([
+        'name' => 'VueJS'
+    ]); */
+
+    //$tag = \App\Models\Tag::first();
+    $post = \App\Models\Post::with('tags')->first();
+
+    //$post->tags()->attach($tag);
+    //$post->tags()->attach([2,3,4]);
+    //$post->tags()->detach([2]);
+
+    //$post->tags()->detach();
+    //$post->tags()->attach([2,3]);
+    //OR
+    $post->tags()->sync([1,4]);
+
+
+    //dd($post);
+
+    $posts = \App\Models\Post::with(['myuser', 'tags'])->get();
     return view('posts.index',compact('posts'));
 });
 
+Route::get('/tags', function(){
+    $tags = \App\Models\Tag::with('posts')->get();
+    return view('tags.index',compact('tags'));
+});

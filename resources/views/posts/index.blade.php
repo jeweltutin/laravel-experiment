@@ -7,13 +7,21 @@
             <div class="card">
                 <div class="card-header">User with Address</div>
                 <div class="card-body">
-                    @foreach ($posts as $post )
+                    {{-- @foreach ($posts as $post )
                         <h2>{{ $post->title }}</h2>
                         <p>
                             Posted By: <small>{{ optional($post->myuser)->name }}</small><br/>
                             {{ $post->post }}
                         </p>
+                    @endforeach --}}
 
+                    @foreach ($posts as $post )
+                        <h2>{{ $post->title }}</h2>
+                        <ul>
+                            @foreach ($post->tags as $tag )
+                                <li>{{ $tag->name }}</li>
+                            @endforeach
+                        </ul>
                     @endforeach
                 </div>
             </div>
