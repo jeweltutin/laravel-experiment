@@ -11,8 +11,8 @@ class Post extends Model
 
     protected $fillable = ['user_id','title','post'];
 
-    public function user(){
-        return $this->belongsTo(User::class)->withDefault([
+    public function myuser(){
+        return $this->belongsTo(User::class,'user_id')->withDefault([
             'name' => 'Guest User'
         ]);
     }

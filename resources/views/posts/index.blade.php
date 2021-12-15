@@ -10,7 +10,7 @@
                     @foreach ($posts as $post )
                         <h2>{{ $post->title }}</h2>
                         <p>
-                            Posted By: <small>{{ optional($post->user)->name }}</small><br/>
+                            Posted By: <small>{{ optional($post->myuser)->name }}</small><br/>
                             {{ $post->post }}
                         </p>
 

@@ -67,7 +67,7 @@ Route::get('/user', function(){
     
     //return view('users.index', compact('addresses'));
 
-    $users = \App\Models\User::with('addresses')->get();
+    //$users = \App\Models\User::with('addresses')->get();
 
     /* $users[0]->addresses()->create([
         'city' => 'Kathmundu',
@@ -76,6 +76,23 @@ Route::get('/user', function(){
 
     //dd($users[0]);
 
+    $users = \App\Models\User::with('posts')->get();
+    //$users = \App\Models\User::has('posts')->with('posts')->get();
+    //$users = \App\Models\User::has('posts', '>=', 2 )->with('posts')->get();
+    /* $users = \App\Models\User::whereHas('posts', function($query){
+        $query->where('title', 'like', '%new%');
+    })->with('posts')->get(); */
+    //$users = \App\Models\User::doesntHave('posts')->with('posts')->get();
+
+
+    /* $users[0]->posts()->create([
+        'title' => 'New post One',
+        'post' => "I know, thist question has been discussed already in this forum. But sorry, i just don't get it. Maybe the problem is, that EN is not my native language."
+    ]);
+    $users[2]->posts()->create([
+        'title' => 'New post Two',
+        'post' => "I know, thist question has been discussed already in this forum. But sorry, i just don't get it. Maybe the problem is, that EN is not my native language."
+    ]); */
     return view('users.index', compact('users'));
 
 });
@@ -102,7 +119,7 @@ Route::get('/posts', function(){
 
     $posts =  \App\Models\Post::get();
 
-    //dd($posts[2]->user); 
+    //dd($posts[2]->user_id); 
     return view('posts.index',compact('posts'));
 });
 
