@@ -11,4 +11,8 @@ class Address extends Model
     use HasFactory;
 
     protected $fillable = ['user_id','city','country'];
+
+    public function owner(){   // This will auto find owner_id
+        return $this->belongsTo(User::class,'uid');
+    }
 }

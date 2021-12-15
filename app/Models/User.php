@@ -43,6 +43,11 @@ class User extends Authenticatable
     ];
 
     public function address(){
-        return $this->hasOne(Address::class);
+        return $this->hasOne(Address::class,'uid','id');
+        //First peramiter is model second paramiter is foreign key third is the local key
+    }
+
+    public function addresses(){
+        return $this->hasMany(Address::class,'uid');
     }
 }
